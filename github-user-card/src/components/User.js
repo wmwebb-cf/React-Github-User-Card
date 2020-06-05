@@ -1,5 +1,4 @@
 import React from 'react';
-import Followers from './Followers';
 import './User.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -7,7 +6,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-
+import Button from '@material-ui/core/Button';
+import CardActions from '@material-ui/core/CardActions';
 
 
 const User = (props) => {
@@ -40,6 +40,13 @@ const User = (props) => {
                         </Typography>
                     </CardContent>
                 </CardActionArea>
+                <CardActions>
+                    <a href={props.url}>
+                        <Button size="medium" color="primary">
+                        {props.name}'s Github Page
+                        </Button>
+                    </a> 
+                </CardActions>
             </Card>
              
         </div>
@@ -48,4 +55,3 @@ const User = (props) => {
 }
 
 export default User;
-// <Followers image={`${attr.avatar_url}`} name={attr.name} userName={attr.login} repos={attr.public_repos} followers={attr.followers} following={attr.following}/>

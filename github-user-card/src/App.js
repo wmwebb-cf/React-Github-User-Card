@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './App.css';
 import User from './components/User';
+import Followers from './components/Followers';
 
 class App extends React.Component {
   state = {
@@ -20,17 +21,24 @@ class App extends React.Component {
     axios
       .get('https://api.github.com/users/wmwebb-cf/followers')
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         this.setState({followers: res.data})
       })
       .catch(err => console.log(err))
   }
   render() {
-    const attr = this.state.usercard;
+    const attrU = this.state.usercard;
+    
     return (
       <div className="App">
         <h1>Github User Card</h1>
-        <User image={`${attr.avatar_url}`} name={attr.name} userName={attr.login} repos={attr.public_repos} followers={attr.followers} following={attr.following} />
+        <User image={`${attrU.avatar_url}`} name={attrU.name} userName={attrU.login} repos={attrU.public_repos} followers={attrU.followers} following={attrU.following} url={`${attrU.html_url}`} />
+        <h2>Followers</h2>
+        <div className='Followers'>
+          {this.state.followers.map(follower => (
+            <Followers image={`${follower.avatar_url}`} userName={follower.login} url={`${follower.html_url}`} key={follower.id}/>
+          ))}
+        </div>
       </div>
     );
   };

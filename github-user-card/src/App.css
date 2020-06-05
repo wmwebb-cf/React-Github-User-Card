@@ -2,4 +2,8 @@
   text-align: center;
 }
 
+Card CardActions a Button {
+  display: flex;
+  
+}
 
